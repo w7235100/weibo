@@ -41,4 +41,6 @@ class UsersController extends Controller
         session()->flash('success','欢迎你来到我们这个大家庭');
        return redirect()->route('users.show',compact('user'));
     }
+
+
 }

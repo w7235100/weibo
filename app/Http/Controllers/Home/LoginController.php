@@ -36,4 +36,15 @@ class LoginController extends Controller
          return  redirect(route('users.show',compact('user')));
 
     }
+
+
+    /**
+     * 用户退出操作
+     */
+    public function logout()
+    {
+        auth()->logout();
+        session()->flash('success','您已成功退出!');
+        return redirect(route('login.index'));
+    }
 }
