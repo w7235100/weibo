@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Requests\UsersRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -28,9 +29,9 @@ class UsersController extends Controller
     /** 用户注册处理
      * @param User $user
      */
-    public  function store(Request $request)
+    public  function store(UsersRequest $request)
     {
-        dump($request->all());
+        dump($request);
 
     }
 }
