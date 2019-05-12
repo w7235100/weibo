@@ -9,6 +9,20 @@ use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
+
+    /** 中间件过滤
+      * UsersController constructor.
+     */
+    public function __construct()
+    {
+
+        $this->middleware('auth', [
+            'except' => ['show','create', 'store']
+        ]);
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
     /**
      * 注册页面
      */
@@ -23,6 +37,7 @@ class UsersController extends Controller
      */
     public function show(User $user){
         #session()->flash('success','欢迎你来到我们这个大家庭');
+        $this->authorize('update', $user);
         return view('static.users.show',compact('user'));
     }
 
@@ -49,7 +64,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
 
-
+        $this->authorize('update', $user);
             return view('static.users.edit',compact('user'));
     }
 
@@ -59,7 +74,7 @@ class UsersController extends Controller
      */
     public function update(User $user,Request $request)
     {
-
+        $this->authorize('update', $user);
         $this->validate($request,[
            'name'=>'required|max:50',
             'password' => 'nullable|confirmed|min:6'
@@ -75,4 +90,6 @@ class UsersController extends Controller
         return redirect()->route('users.show',$user->id);
 
     }
+
+
 }

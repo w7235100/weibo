@@ -29,11 +29,13 @@ class LoginController extends Controller
       $ret=auth()->attempt(['email'=>$request->email,'password'=>$request->password]);
          if (!$ret){
             session()->flash('danger','账号或密码不正确');
-            return redirect()->back();
+            return redirect()->back()->withInput();
          }
          $user=auth()->user();
         session()->flash('success','欢迎回来!');
-         return  redirect(route('users.show',compact('user')));
+        //$fallback=route('users.show',$user);
+
+         return  redirect()->route('users.show',$user);
 
     }
 
