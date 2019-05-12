@@ -17,12 +17,20 @@ class UsersController extends Controller
     {
 
         $this->middleware('auth', [
-            'except' => ['show','create', 'store']
+            'except' => ['show','create', 'store','index']
         ]);
         $this->middleware('guest', [
             'only' => ['create']
         ]);
     }
+
+
+    public function index()
+    {
+        $users=User::paginate(5);
+        return view('static.users.index',compact('users'));
+    }
+
     /**
      * 注册页面
      */
