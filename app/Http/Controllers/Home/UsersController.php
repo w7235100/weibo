@@ -34,7 +34,7 @@ class UsersController extends Controller
     {
        $user=User::create([
            'name'=>$request->name,
-           'password'=>$request->password,
+           'password'=>bcrypt($request->password),
            'email'=>$request->email
        ]);
         session()->flash('success','欢迎你来到我们这个大家庭');
