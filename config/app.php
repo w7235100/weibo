@@ -135,7 +135,8 @@ return [
     */
 
     'providers' => [
-
+        #IDE
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */

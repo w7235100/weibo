@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
-Route::get('/','StaticPagesController@home')->name('static.pages.home');
-Route::get('/help','StaticPagesController@help')->name('static.help.home');
-Route::get('/about','StaticPagesController@about')->name('static.about.home');
+
+Route::prefix('/')-> group(function(){
+    //首页
+    Route::get('','StaticPagesController@home')->name('static.home');
+//帮助页
+    Route::get('help','StaticPagesController@help')->name('static.help');
+//关于页
+    Route::get('about','StaticPagesController@about')->name('static.about');
+});
