@@ -2,6 +2,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+
 body{
   font-size: 14px;
   font-weight: normal;
@@ -9,4 +10,8 @@ body{
 
 nav.navbar.navbar-expand-lg{
   margin-bottom:20px;
+}
+$navbar-color: #3c3e42;
+.navbar-inverse {
+  background-color: $navbar-color;
 }
