@@ -22,6 +22,7 @@ class UsersController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(User $user){
+        #session()->flash('success','欢迎你来到我们这个大家庭');
         return view('static.users.show',compact('user'));
     }
 
@@ -31,7 +32,12 @@ class UsersController extends Controller
      */
     public  function store(UsersRequest $request)
     {
-        dump($request);
-
+       $user=User::create([
+           'name'=>$request->name,
+           'password'=>$request->password,
+           'email'=>$request->email
+       ]);
+        session()->flash('success','欢迎你来到我们这个大家庭');
+       return redirect()->route('users.show',compact('user'));
     }
 }
