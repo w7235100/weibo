@@ -26,5 +26,7 @@ Route::prefix('/')->namespace('Home') ->group(function(){
 
     //注册页面
     Route::get('register','UsersController@index')->name('users.register');
+    //用户相关
+    Route::resource('users','UsersController');
 });
 
