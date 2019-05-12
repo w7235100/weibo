@@ -16,11 +16,15 @@
 });*/
 
 
-Route::prefix('/')-> group(function(){
+Route::prefix('/')->namespace('Home') ->group(function(){
     //首页
     Route::get('','StaticPagesController@home')->name('static.home');
 //帮助页
     Route::get('help','StaticPagesController@help')->name('static.help');
 //关于页
     Route::get('about','StaticPagesController@about')->name('static.about');
+
+    //注册页面
+    Route::get('register','UsersController@index')->name('users.register');
 });
+
