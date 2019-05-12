@@ -11,9 +11,9 @@ class UsersController extends Controller
     /**
      * 注册页面
      */
-    public function  index()
+    public function  create()
     {
-        return view('static.users.index');
+        return view('static.users.create');
     }
 
     /**用户个人页面
@@ -22,5 +22,15 @@ class UsersController extends Controller
      */
     public function show(User $user){
         return view('static.users.show',compact('user'));
+    }
+
+
+    /** 用户注册处理
+     * @param User $user
+     */
+    public  function store(Request $request)
+    {
+        dump($request->all());
+
     }
 }

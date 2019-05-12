@@ -25,7 +25,7 @@ Route::prefix('/')->namespace('Home') ->group(function(){
     Route::get('about','StaticPagesController@about')->name('static.about');
 
     //注册页面
-    Route::get('register','UsersController@index')->name('users.register');
+    Route::get('register','UsersController@create')->name('users.register');
     //用户相关
     Route::resource('users','UsersController');
 });
