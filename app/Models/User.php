@@ -78,4 +78,14 @@ class User extends Authenticatable
 
         return $url;
      }
+
+    /** 写入密码时 给密码加密
+     * @param $value
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password']=bcrypt($value);
+    }
+
+
 }
