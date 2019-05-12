@@ -31,11 +31,19 @@ class LoginController extends Controller
             session()->flash('danger','账号或密码不正确');
             return redirect()->back()->withInput();
          }
-         $user=auth()->user();
-        session()->flash('success','欢迎回来!');
-        //$fallback=route('users.show',$user);
 
-         return  redirect()->route('users.show',$user);
+
+         $user=auth()->user();
+         if ($user->activated){
+             session()->flash('success','欢迎回来!');
+
+
+             return  redirect()->route('users.show',$user);
+         }
+        auth()->logout();
+        session()->flash('warning', '你的账号未激活，请检查邮箱中的注册邮件进行激活。');
+        return redirect('/');
+
 
     }
 

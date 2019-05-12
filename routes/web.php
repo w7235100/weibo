@@ -36,7 +36,8 @@ Route::prefix('/')->namespace('Home') ->group(function(){
     //用户登出操作
     Route::post('logout','LoginController@logout')->name('login.logout');
 
-
+    //发送邮件显示
+    Route::get('register/confirm/{token}', 'UsersController@confirmEmail')->name('users.confirm_email');
 
 });
 
