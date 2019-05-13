@@ -46,8 +46,14 @@ class UsersController extends Controller
      */
     public function show(User $user){
         #session()->flash('success','欢迎你来到我们这个大家庭');
+
         $this->authorize('update', $user);
-        return view('static.users.show',compact('user'));
+        // 获取微博数据 按照创建时间 来进行排序  每页显示10个
+        $statuses = $user->statuses()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('static.users.show',compact('user','statuses'));
     }
 
 
