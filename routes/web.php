@@ -41,3 +41,14 @@ Route::prefix('/')->namespace('Home') ->group(function(){
 
 });
 
+//密码重置
+Route::prefix('password')->namespace('Auth')->group(function(){
+    //显示重置密码的邮箱发送页面
+    Route::get('reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    //邮箱发送重设链接
+    Route::post('email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    //密码更新页面
+    Route::get('reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    //执行密码更新操作
+    Route::post('reset', 'ResetPasswordController@reset')->name('password.update');
+});
