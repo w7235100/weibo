@@ -38,7 +38,8 @@ Route::prefix('/')->namespace('Home') ->group(function(){
 
     //发送邮件显示
     Route::get('register/confirm/{token}', 'UsersController@confirmEmail')->name('users.confirm_email');
-
+    //微博增加 删除操作                                     白名单过滤
+    Route::resource('statuses', 'StatusesController', ['only' => ['store', 'destroy']]);
 });
 
 //密码重置
@@ -52,3 +53,4 @@ Route::prefix('password')->namespace('Auth')->group(function(){
     //执行密码更新操作
     Route::post('reset', 'ResetPasswordController@reset')->name('password.update');
 });
+
